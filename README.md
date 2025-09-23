@@ -2,7 +2,7 @@
 
 [![PyPI](https://img.shields.io/pypi/v/fastapi-route-middleware)](https://pypi.org/project/fastapi_route_middleware/)
 
-A dependency free™ middleware system for adding middleware to specific FastAPI routes. I just like how node express works.
+A dependency free™ middleware system for adding middleware to specific FastAPI routes. I just like how Express.js works, why not try to port some of its goods on FastAPI?
 
 ## Installation
 
@@ -93,7 +93,6 @@ The `add_middleware` decorator:
 ## Requirements
 
 - Python >= 3.8
-- FastAPI >= 0.68.0
 
 ## License
 
