@@ -1,5 +1,7 @@
 # FastAPI Route Middleware
 
+[![PyPI](https://img.shields.io/pypi/v/fastapi-route-middleware)](https://pypi.org/project/fastapi_route_middleware/)
+
 A dependency free™ middleware system for adding middleware to specific FastAPI routes. I just like how node express works.
 
 ## Installation
