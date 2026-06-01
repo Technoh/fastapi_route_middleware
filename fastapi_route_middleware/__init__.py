@@ -1,5 +1,5 @@
 from asyncio import Future, iscoroutinefunction
-from inspect import signature
+from inspect import Parameter, signature
 from typing import Any, Callable
 
 
@@ -35,10 +35,17 @@ def add_middleware(
             **middleware_signature.parameters,
             **original_signature.parameters,
         }
-        complete_signature = original_signature.replace(
-            parameters=list(complete_params.values())
+        # Sort parameters without defaults first, then those with defaults.
+        # Otherwise we get "ValueError: non-default argument follows default argument".
+        sorted_params = sorted(
+            complete_params.values(),
+            key=lambda p: p.default is Parameter.empty and p.kind not in (
+                Parameter.VAR_POSITIONAL, Parameter.VAR_KEYWORD
+            ),
+            reverse=True,
         )
 
+        complete_signature = original_signature.replace(parameters=sorted_params)
         async def _wrapper(*args, **kwargs) -> Any:
             middleware_args = {
                 name: kwargs[name]
